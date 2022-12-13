@@ -1,0 +1,10 @@
+
+
+
+.inputvalue:focus {
+    outline: none;
+}
+
+.inputvalue.active {
+    outline: 0.5px black solid;
+}
