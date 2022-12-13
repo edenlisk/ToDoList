@@ -1,4 +1,5 @@
-import "bootstrap/dist/css/bootstrap.css";
-import displayToDos from "./todolist/script";
-import "./style.css";
+import 'bootstrap/dist/css/bootstrap.css';
+import displayToDos from './todolist/script.js';
+import './style.css';
+
 displayToDos();
