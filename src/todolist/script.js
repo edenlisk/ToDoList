@@ -26,9 +26,9 @@ const toDoInfo = [
 function createToDo(toDoValue) {
   const listItem = document.createElement('li');
   const toDoDiv = document.createElement('div');
-  toDoDiv.classList.add('d-flex', 'py-2', 'container', 'align-items-center', 'justify-content-between');
+  toDoDiv.classList.add('d-flex', 'py-1', 'container', 'align-items-center', 'justify-content-between');
   const listDescription = document.createElement('input');
-  listDescription.classList.add('container', 'inputvalue', 'border-0', 'my-auto', 'py-1');
+  listDescription.classList.add('container', 'inputvalue', 'border-0', 'my-auto');
   listDescription.value = toDoValue;
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
