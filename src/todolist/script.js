@@ -1,4 +1,5 @@
-import Interactive from "./interactive.js";
+import Interactive from './interactive.js';
+
 const removeCompleted = document.querySelector('.remove-completed');
 const refreshIcon = document.querySelector('.reload-icon');
 const todo = document.querySelector('.todo-description');
@@ -118,7 +119,7 @@ export function display() {
     toDoListCollection.updateToDo(fld, index);
   });
 
-  toDoInteractive.reload(refreshIcon);
+  Interactive.reload(refreshIcon);
   toDoInteractive.removeCompleted(removeCompleted);
 }
 
