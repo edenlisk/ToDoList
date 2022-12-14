@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import displayToDos from './todolist/script.js';
+import listener, { display } from './todolist/script.js';
+
 import './style.css';
 
-displayToDos();
+display();
+listener();
