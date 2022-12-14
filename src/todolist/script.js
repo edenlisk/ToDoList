@@ -1,8 +1,5 @@
-import Interactive from "./interactive.js";
-const removeCompleted = document.querySelector('.remove-completed');
 const todo = document.querySelector('.todo-description');
 const todoList = document.querySelector('.todo-list');
-const reloadIcon = document.querySelector('.reload-icon');
 class ToDoListClass {
   constructor() {
     this.toDoInfo = JSON.parse(localStorage.getItem('todo')) || [];
@@ -76,6 +73,23 @@ class ToDoListClass {
     });
   }
 
+  // update status
+  updateStatus(checkbox, index) {
+    checkbox.addEventListener('click', (event) => {
+      if (event.currentTarget.checked) {
+        checkbox.nextElementSibling.classList.add('text-decoration-line-through');
+        this.toDoInfo[index].completed = true;
+        localStorage.setItem('todo', JSON.stringify(this.toDoInfo));
+      } else {
+        if (checkbox.nextElementSibling.classList.contains('text-decoration-line-through')) {
+          checkbox.nextElementSibling.classList.remove('text-decoration-line-through');
+        }
+        this.toDoInfo[index].completed = false;
+        localStorage.setItem('todo', JSON.stringify(this.toDoInfo));
+      }
+    });
+  }
+
   // remove selected todo
   removeSelectedToDo(trash, index) {
     trash.addEventListener('click', () => {
@@ -95,10 +109,9 @@ class ToDoListClass {
 const toDoListCollection = new ToDoListClass();
 export function display() {
   toDoListCollection.displayToDos();
-  const toDoInteractive = new Interactive();
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach((chk, index) => {
-    toDoInteractive.updateStatus(chk, index);
+    toDoListCollection.updateStatus(chk, index);
   });
 
   const threeDots = document.querySelectorAll('.threedots');
@@ -116,9 +129,6 @@ export function display() {
   inputValue.forEach((fld, index) => {
     toDoListCollection.updateToDo(fld, index);
   });
-
-  toDoInteractive.reload(reloadIcon);
-  toDoInteractive.removeCompleted(removeCompleted);
 }
 
 export default function listener() {
