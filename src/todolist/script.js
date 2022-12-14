@@ -18,7 +18,7 @@ class ToDoListClass {
   }
 
   // create and add new task
-  createToDo(toDoValue) {
+  createToDo(toDoValue, index) {
     const listItem = document.createElement('li');
     const toDoDiv = document.createElement('div');
     toDoDiv.classList.add('d-flex', 'py-1', 'container', 'align-items-center', 'justify-content-between');
@@ -28,6 +28,13 @@ class ToDoListClass {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox');
+    if (this.toDoInfo[index].completed === true) {
+      listDescription.classList.add('text-decoration-line-through');
+      checkbox.checked = true;
+    } else {
+      listDescription.classList.add('text-decoration-none');
+      checkbox.checked = false;
+    }
     const threeDots = document.createElement('span');
     threeDots.classList.add('pe-1', 'fs-2', 'threedots');
     const trash = document.createElement('span');
