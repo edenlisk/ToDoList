@@ -67,6 +67,9 @@
 
 - **To Do List Basic Structure**
 
+## Live Demo <a name="live-demo"></a>
+Click [here](https://edenlisk.github.io/ToDoList/dist/) to view live demo
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 💻 Getting Started <a name="getting-started"></a>
