@@ -22,7 +22,7 @@ export class ToDoListClass {
   }
 
   // create and add new task
-  createToDo(toDoValue, index) {
+  static createToDo(container, toDoValue) {
     const listItem = document.createElement('li');
     const toDoDiv = document.createElement('div');
     toDoDiv.classList.add('d-flex', 'py-1', 'container', 'align-items-center', 'justify-content-between');
@@ -33,13 +33,13 @@ export class ToDoListClass {
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox');
-    if (this.toDoInfo[index].completed === true) {
-      listDescription.classList.add('text-decoration-line-through');
-      checkbox.checked = true;
-    } else {
-      listDescription.classList.add('text-decoration-none');
-      checkbox.checked = false;
-    }
+    // if (this.toDoInfo[index].completed === true) {
+    //   listDescription.classList.add('text-decoration-line-through');
+    //   checkbox.checked = true;
+    // } else {
+    //   listDescription.classList.add('text-decoration-none');
+    //   checkbox.checked = false;
+    // }
     const threeDots = document.createElement('span');
     threeDots.classList.add('pe-1', 'fs-2', 'threedots');
     const trash = document.createElement('span');
@@ -54,7 +54,8 @@ export class ToDoListClass {
     const horizontalLine = document.createElement('hr');
     toDoDiv.append(checkbox, listDescription, threeDots, trash);
     listItem.append(toDoDiv, horizontalLine);
-    todoList.appendChild(listItem);
+    container.appendChild(listItem);
+    // todoList.appendChild(listItem);
   }
 
   // display all existing todo tasks
@@ -65,17 +66,9 @@ export class ToDoListClass {
   }
 
   // update todo
-  updateToDo(inputField, index) {
-    inputField.addEventListener('keypress', (e) => {
-      if (inputField.value && e.key === 'Enter') {
-        this.toDoInfo[index].description = inputField.value;
-        localStorage.setItem('todo', JSON.stringify(this.toDoInfo));
-        inputField.nextElementSibling.classList.remove('d-none');
-        inputField.nextElementSibling.nextElementSibling.classList.add('d-none');
-        inputField.readOnly = true;
-        inputField.classList.remove('active');
-      }
-    });
+  static updateToDo(inputField, newValue) {
+    inputField.value = newValue;
+    // localStorage.setItem('todo', JSON.stringify(this.toDoInfo));
   }
 
   // remove selected todo
@@ -93,6 +86,10 @@ export class ToDoListClass {
     });
   }
 
+  static updateTodoStorage(toDoObject, newValue) {
+    toDoObject.description = newValue;
+  }
+
   removeItem(index) {
     this.toDoInfo.splice(index, 1);
     this.toDoInfo.forEach((task, index) => {
@@ -107,10 +104,9 @@ export class ToDoListClass {
 const toDoListCollection = new ToDoListClass();
 export function display() {
   toDoListCollection.displayToDos();
-  const toDoInteractive = new Interactive();
   const checkbox = document.querySelectorAll('.checkbox');
   checkbox.forEach((chk, index) => {
-    toDoInteractive.updateStatus(chk, index);
+    Interactive.updateStatus(chk, index);
   });
 
   const threeDots = document.querySelectorAll('.threedots');
@@ -130,7 +126,7 @@ export function display() {
   });
 
   Interactive.reload(refreshIcon);
-  toDoInteractive.removeCompleted(removeCompleted);
+  Interactive.removeCompleted(removeCompleted);
 }
 
 export default function listener() {
