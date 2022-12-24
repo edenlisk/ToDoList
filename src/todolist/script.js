@@ -89,10 +89,6 @@ export class ToDoListClass {
     });
   }
 
-  updateLocalStorage() {
-    localStorage.setItem('todo', JSON.stringify(this.toDoInfo));
-  }
-
   updateIndex() {
     this.toDoInfo.forEach((task, index) => {
       if (task.index !== index) {
