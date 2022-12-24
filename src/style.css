@@ -1,4 +1,4 @@
-.inputvalue:focus {
+.inputvalue:focus, .todo-description:focus {
   outline: none;
 }
 
@@ -8,8 +8,4 @@
 
 .todo-description {
   border: none;
-}
-
-.todo-description:focus {
-  outline: none;
 }

@@ -25,13 +25,17 @@ export default class Interactive {
     removeCompleted.addEventListener('click', () => {
       this.toDoList = this.toDoList.filter((task) => task.completed !== true);
       localStorage.setItem('todo', JSON.stringify(this.toDoList));
-      this.toDoList.forEach((task, index) => {
-        if (task.index !== index) {
-          task.index = index;
-        }
-      });
+      this.updateIndex();
       localStorage.setItem('todo', JSON.stringify(this.toDoList));
       window.location.reload();
+    });
+  }
+
+  updateIndex() {
+    this.toDoList.forEach((task, index) => {
+      if (task.index !== index) {
+        task.index = index;
+      }
     });
   }
 

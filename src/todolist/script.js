@@ -4,7 +4,7 @@ const removeCompleted = document.querySelector('.remove-completed');
 const refreshIcon = document.querySelector('.reload-icon');
 const todo = document.querySelector('.todo-description');
 const todoList = document.querySelector('.todo-list');
-class ToDoListClass {
+export class ToDoListClass {
   constructor() {
     this.toDoInfo = JSON.parse(localStorage.getItem('todo')) || [];
   }
@@ -83,13 +83,21 @@ class ToDoListClass {
     trash.addEventListener('click', () => {
       todoList.removeChild(trash.parentElement.parentElement);
       this.toDoInfo.splice(index, 1);
-      this.toDoInfo.forEach((task) => {
-        if (task.index > index) {
-          task.index -= 1;
-        }
-      });
+      this.updateIndex();
       localStorage.setItem('todo', JSON.stringify(this.toDoInfo));
       window.location.reload();
+    });
+  }
+
+  updateLocalStorage() {
+    localStorage.setItem('todo', JSON.stringify(this.toDoInfo));
+  }
+
+  updateIndex() {
+    this.toDoInfo.forEach((task, index) => {
+      if (task.index !== index) {
+        task.index = index;
+      }
     });
   }
 }
